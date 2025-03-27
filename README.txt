@@ -40,6 +40,6 @@ Have a suggestion or found a bug? Open an issue or start a discussion on the [Gi
 
 ---
 
-**Made with love by SoulLessCookie**
+**Made with love by WrigglySplash**
 
 _Not affiliated with Hypixel._  
