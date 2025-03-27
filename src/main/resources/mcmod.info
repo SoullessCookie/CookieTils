@@ -1,0 +1,16 @@
+[
+{
+  "modid": "cookietils",
+  "name": "CookieTils",
+  "description": "Uwu, idk what to put here",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["WrigglySplash"],
+  "credits": "The terrible Hypixel Skyblock community",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "addons": {
+    "skyblock": {
+      "dungeons": {
+        "secrets": true,
+        "secretsOverlay": true,
+        "secretsOverlayColor": "#FF0000",
+        "secretsOverlayTransparency": 0.5,
+
+      }
+    }
+  }
+}
