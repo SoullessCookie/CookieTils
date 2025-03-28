@@ -1,4 +1,4 @@
-package net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets;
+package net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders;
 
 import net.minecraft.block.BlockLever;
 import net.minecraft.client.Minecraft;
