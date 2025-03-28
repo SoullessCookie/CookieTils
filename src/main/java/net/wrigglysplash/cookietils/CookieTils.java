@@ -7,7 +7,10 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.GridBasedSecretFinder;
+import net.wrigglysplash.cookietils.addons.skyblock.dungeons.MapOverlayRenderer;
+import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.BatFinder;
+import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.ChestFinder;
+import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.LeverFinder;
 import net.wrigglysplash.cookietils.utils.commands.CommandCookieTils;
 import net.wrigglysplash.cookietils.utils.gui.GuiCloseHandler;
 
@@ -52,14 +55,12 @@ public class CookieTils
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        // Temporary
-        MinecraftForge.EVENT_BUS.register(new GridBasedSecretFinder());
-
         MinecraftForge.EVENT_BUS.register(new GuiCloseHandler());
+        MinecraftForge.EVENT_BUS.register(new MapOverlayRenderer());
 
-        //MinecraftForge.EVENT_BUS.register(new ChestFinder());
-        //MinecraftForge.EVENT_BUS.register(new LeverFinder());
-        //MinecraftForge.EVENT_BUS.register(new BatFinder());
+        MinecraftForge.EVENT_BUS.register(new ChestFinder());
+        MinecraftForge.EVENT_BUS.register(new LeverFinder());
+        MinecraftForge.EVENT_BUS.register(new BatFinder());
         System.out.println("CookieTils loaded!");
     }
 
