@@ -7,7 +7,6 @@ import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -89,8 +88,6 @@ public class LeverFinder {
             line = line.replaceAll("§.", "").toLowerCase().trim();
             if (line.isEmpty() || seenLines.contains(line)) continue;
             seenLines.add(line);
-
-            mc.thePlayer.addChatMessage(new ChatComponentText("§8> §7" + line));
 
             if (line.contains("catacombs") || line.contains("(f")) {
                 cachedDungeonStatus = true;

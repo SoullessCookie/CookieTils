@@ -82,3 +82,13 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+def mcModsFolder = file("C:/Users/donte/AppData/Roaming/.minecraft/mods")
+
+task copyJarToMods(type: Copy) {
+    from "$buildDir/libs"
+    include "*.jar"
+    into mcModsFolder
+}
+
+tasks.build.finalizedBy(copyJarToMods)
