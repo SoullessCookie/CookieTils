@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.wrigglysplash.cookietils.addons.skyblock.dungeons.MapOverlayRenderer;
+import net.wrigglysplash.cookietils.addons.skyblock.dungeons.mobs.finders.StarMobFinder;
 import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.BatFinder;
 import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.ChestFinder;
 import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.LeverFinder;
@@ -57,6 +58,8 @@ public class CookieTils
     {
         MinecraftForge.EVENT_BUS.register(new GuiCloseHandler());
         MinecraftForge.EVENT_BUS.register(new MapOverlayRenderer());
+
+        MinecraftForge.EVENT_BUS.register(new StarMobFinder());
 
         MinecraftForge.EVENT_BUS.register(new ChestFinder());
         MinecraftForge.EVENT_BUS.register(new LeverFinder());
