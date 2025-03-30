@@ -34,6 +34,8 @@ public class CookieTils
     public static float leverOverlayAlpha;
     public static String batOverlayColor;
     public static float batOverlayAlpha;
+    public static String starMobOverlayColor;
+    public static float starMobOverlayAlpha;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -49,6 +51,8 @@ public class CookieTils
         leverOverlayAlpha = (float) config.get("Skyblock Dungeons", "Lever Overlay Transparency", 0.3).getDouble();
         batOverlayColor = config.get("Skyblock Dungeons", "Bat Color", "#1cc2ff").getString();
         batOverlayAlpha = (float) config.get("Skyblock Dungeons", "Bat Overlay Transparency", 0.3).getDouble();
+        starMobOverlayColor = config.get("Skyblock Dungeons", "Star Mob Color", "#fce303").getString();
+        starMobOverlayAlpha = (float) config.get("Skyblock Dungeons", "Star Mob Overlay Transparency", 0.3).getDouble();
 
         if (config.hasChanged()) config.save();
     }
@@ -81,6 +85,8 @@ public class CookieTils
         leverOverlayAlpha = (float) config.get("Skyblock Dungeons", "Lever Overlay Transparency", 0.3).getDouble();
         batOverlayColor = config.get("Skyblock Dungeons", "Bat Color", "#1cc2ff").getString();
         batOverlayAlpha = (float) config.get("Skyblock Dungeons", "Bat Overlay Transparency", 0.3).getDouble();
+        starMobOverlayColor = config.get("Skyblock Dungeons", "Star Mob Color", "#fce303").getString();
+        starMobOverlayAlpha = (float) config.get("Skyblock Dungeons", "Star Mob Overlay Transparency", 0.3).getDouble();
     }
 }
 

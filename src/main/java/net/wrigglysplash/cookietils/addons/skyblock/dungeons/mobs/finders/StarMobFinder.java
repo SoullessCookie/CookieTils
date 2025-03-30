@@ -6,7 +6,6 @@ import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -40,7 +39,6 @@ public class StarMobFinder {
                 .filter(e -> {
                     String rawName = e.getDisplayName().getFormattedText();
                     String name = StringUtils.stripControlCodes(rawName);
-
                     return name.indexOf(10031) != -1;
                 })
                 .collect(Collectors.toList());
@@ -62,12 +60,11 @@ public class StarMobFinder {
             double y = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * pt;
             double z = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * pt;
 
-            AxisAlignedBB box = entity.getEntityBoundingBox()
-                    .offset(-entity.posX, -entity.posY, -entity.posZ)
-                    .offset(x - dx, y - dy, z - dz);
-
-            StarMobRenderer.renderStarMobBox(box);
-            mc.thePlayer.addChatMessage(new ChatComponentText("Tracking: " + entity.getName()));
+            AxisAlignedBB box = new AxisAlignedBB(
+                    x - 0.3 - dx, y - dy - 1.9,     z - 0.3 - dz,
+                    x + 0.3 - dx, y + 1.8 - dy - 1.9, z + 0.3 - dz
+            );
+            StarMobRenderer.renderBox(box, CookieTils.starMobOverlayColor, CookieTils.starMobOverlayAlpha, true, true);
         }
     }
 

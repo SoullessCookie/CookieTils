@@ -9,38 +9,40 @@ import org.lwjgl.opengl.GL11;
 
 public class StarMobRenderer {
 
-    public static void renderStarMobBox(AxisAlignedBB bb) {
+    public static void renderBox(AxisAlignedBB bb, String hexColor, float fillAlpha, boolean filled, boolean outline) {
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         GlStateManager.disableTexture2D();
         GlStateManager.disableDepth();
-        GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
         GL11.glDisable(GL11.GL_CULL_FACE);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
-        // Fill
-        float[] fillColor = hexToRGBA("#8000FF", 0.4F);
-        GlStateManager.color(fillColor[0], fillColor[1], fillColor[2], fillColor[3]);
-        drawFilledBox(bb);
+        if (filled) {
+            float[] fillColor = hexToRGBA(hexColor, fillAlpha);
+            GlStateManager.color(fillColor[0], fillColor[1], fillColor[2], fillColor[3]);
+            drawFilledBox(bb);
+        }
 
-        // Outline
-        float[] outlineColor = hexToRGBA("#8000FF", 0.9F);
-        GlStateManager.color(outlineColor[0], outlineColor[1], outlineColor[2], outlineColor[3]);
-        GL11.glLineWidth(2.0F);
-        drawOutlinedBox(bb);
+        if (outline) {
+            float[] outlineColor = hexToRGBA(hexColor, 0.7F); // fixed outline alpha
+            GlStateManager.color(outlineColor[0], outlineColor[1], outlineColor[2], outlineColor[3]);
+            GL11.glLineWidth(2.0F);
+            Tessellator tess = Tessellator.getInstance();
+            WorldRenderer wr = tess.getWorldRenderer();
+            wr.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION);
+            drawOutlinedBox(wr, bb);
+            tess.draw();
+        }
 
         // Reset GL state
         GL11.glEnable(GL11.GL_CULL_FACE);
-        GlStateManager.enableDepth();
         GlStateManager.enableTexture2D();
+        GlStateManager.enableDepth();
         GlStateManager.disableBlend();
         GlStateManager.popMatrix();
     }
 
-    private static void drawOutlinedBox(AxisAlignedBB bb) {
-        Tessellator tess = Tessellator.getInstance();
-        WorldRenderer wr = tess.getWorldRenderer();
-        wr.begin(GL11.GL_LINES, DefaultVertexFormats.POSITION);
-
+    private static void drawOutlinedBox(WorldRenderer wr, AxisAlignedBB bb) {
         // Bottom
         wr.pos(bb.minX, bb.minY, bb.minZ).endVertex(); wr.pos(bb.maxX, bb.minY, bb.minZ).endVertex();
         wr.pos(bb.maxX, bb.minY, bb.minZ).endVertex(); wr.pos(bb.maxX, bb.minY, bb.maxZ).endVertex();
@@ -51,13 +53,11 @@ public class StarMobRenderer {
         wr.pos(bb.maxX, bb.maxY, bb.minZ).endVertex(); wr.pos(bb.maxX, bb.maxY, bb.maxZ).endVertex();
         wr.pos(bb.maxX, bb.maxY, bb.maxZ).endVertex(); wr.pos(bb.minX, bb.maxY, bb.maxZ).endVertex();
         wr.pos(bb.minX, bb.maxY, bb.maxZ).endVertex(); wr.pos(bb.minX, bb.maxY, bb.minZ).endVertex();
-        // Sides
+        // Verticals
         wr.pos(bb.minX, bb.minY, bb.minZ).endVertex(); wr.pos(bb.minX, bb.maxY, bb.minZ).endVertex();
         wr.pos(bb.maxX, bb.minY, bb.minZ).endVertex(); wr.pos(bb.maxX, bb.maxY, bb.minZ).endVertex();
         wr.pos(bb.maxX, bb.minY, bb.maxZ).endVertex(); wr.pos(bb.maxX, bb.maxY, bb.maxZ).endVertex();
         wr.pos(bb.minX, bb.minY, bb.maxZ).endVertex(); wr.pos(bb.minX, bb.maxY, bb.maxZ).endVertex();
-
-        tess.draw();
     }
 
     private static void drawFilledBox(AxisAlignedBB bb) {
@@ -114,6 +114,7 @@ public class StarMobRenderer {
         return new float[]{r, g, b, alpha};
     }
 }
+
 
     /* public static void drawTracer(Vec3 playerFeet, AxisAlignedBB mobBB, float r, float g, float b, float a) {
         Vec3 mobCenter = new Vec3(
