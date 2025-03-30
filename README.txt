@@ -45,7 +45,7 @@ Feel free to open an issue or start a discussion over on the [GitHub Issues page
 
 ---
 
-**Made with love by WrigglySplash**  
+**Made with anger by WrigglySplash**  
 *IGN: Lumindra*
 
 > All code is original and written by me (WrigglySplash).  
