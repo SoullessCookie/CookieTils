@@ -1,4 +1,4 @@
 package net.wrigglysplash.cookietils.addons.skyblock.dungeons.solver;
 
-public class boxMovingPuzzle {
+public class TeleportMazePuzzle {
 }

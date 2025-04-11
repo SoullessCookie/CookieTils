@@ -10,6 +10,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.wrigglysplash.cookietils.addons.skyblock.dungeons.utils.DungeonUtils;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -26,7 +27,7 @@ public class SecretLogger {
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null || hasLogged) return;
-        if (!isInDungeon()) return;
+        if (!DungeonUtils.isInDungeon()) return;
 
         World world = mc.theWorld;
         StringBuilder out = new StringBuilder();

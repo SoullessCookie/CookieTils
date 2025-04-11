@@ -9,7 +9,7 @@ public class CommandCookieTils extends CommandBase {
 
     @Override
     public String getCommandName() {
-        return "cookietils";
+        return "assets/cookietils";
     }
 
     @Override
