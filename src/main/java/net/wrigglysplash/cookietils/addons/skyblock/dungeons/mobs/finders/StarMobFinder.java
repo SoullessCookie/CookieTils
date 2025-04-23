@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.wrigglysplash.cookietils.CookieTils;
 import net.wrigglysplash.cookietils.addons.skyblock.dungeons.mobs.renderer.StarMobRenderer;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.utils.DungeonUtils;
+import net.wrigglysplash.cookietils.utils.checks.DungeonCheck;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +23,7 @@ public class StarMobFinder {
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null) return;
-        if (!DungeonUtils.isInDungeon()) return;
+        if (!DungeonCheck.isInDungeon()) return;
         if (!CookieTils.secretsOverlay) return;
 
         tickCount++;
@@ -43,7 +43,7 @@ public class StarMobFinder {
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null || starMobs == null) return;
-        if (!DungeonUtils.isInDungeon()) return;
+        if (!DungeonCheck.isInDungeon()) return;
         if (!CookieTils.secretsOverlay) return;
 
         double pt = event.partialTicks;

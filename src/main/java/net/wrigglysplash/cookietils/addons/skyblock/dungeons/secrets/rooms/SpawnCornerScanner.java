@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.utils.DungeonUtils;
+import net.wrigglysplash.cookietils.utils.checks.DungeonCheck;
 import org.lwjgl.opengl.GL11;
 
 public class SpawnCornerScanner {
@@ -25,7 +25,7 @@ public class SpawnCornerScanner {
     public void onClientTick(TickEvent.ClientTickEvent event) {
         Minecraft mc = Minecraft.getMinecraft();
         if (mc.theWorld == null || mc.thePlayer == null) return;
-        if (!DungeonUtils.isInDungeon()) return;
+        if (!DungeonCheck.isInDungeon()) return;
         if (mc.theWorld.getTotalWorldTime() % 100 != 0) return; // check every ~5 seconds
 
         Entity mort = mc.theWorld.loadedEntityList.stream()

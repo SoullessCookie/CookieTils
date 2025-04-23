@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.wrigglysplash.cookietils.CookieTils;
 import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.renderer.ChestRenderer;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.utils.DungeonUtils;
+import net.wrigglysplash.cookietils.utils.checks.DungeonCheck;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class ChestFinder {
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null) return;
-        if (!DungeonUtils.isInDungeon()) return;
+        if (!DungeonCheck.isInDungeon()) return;
         if (!CookieTils.secretsOverlay) return;
 
         tickCount++;
@@ -41,7 +41,7 @@ public class ChestFinder {
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null) return;
-        if (!DungeonUtils.isInDungeon()) return;
+        if (!DungeonCheck.isInDungeon()) return;
         if (!CookieTils.secretsOverlay) return;
 
         double pt = event.partialTicks;

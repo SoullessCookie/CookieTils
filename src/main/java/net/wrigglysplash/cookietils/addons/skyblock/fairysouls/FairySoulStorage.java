@@ -3,7 +3,7 @@ package net.wrigglysplash.cookietils.addons.skyblock.fairysouls;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
-import net.wrigglysplash.cookietils.addons.skyblock.fairysouls.utils.FairyAreaUtils;
+import net.wrigglysplash.cookietils.utils.AreaUtil;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class FairySoulStorage {
         List<BlockPos> positions = new ArrayList<>();
         Minecraft mc = Minecraft.getMinecraft();
 
-        String area = FairyAreaUtils.getCurrentArea().toLowerCase().replace(" ", "_");
+        String area = AreaUtil.getCurrentArea().toLowerCase().replace(" ", "_");
         File file = null;
 
         // I know this isn't ideal, but for some reason when trying to get the name stripped of formatting, it always
@@ -77,7 +77,6 @@ public class FairySoulStorage {
             mc.thePlayer.addChatMessage(new ChatComponentText("§aLoaded " + count + " fairy souls."));
         } catch (IOException e) {
             mc.thePlayer.addChatMessage(new ChatComponentText("§cError reading file: " + e.getMessage()));
-            e.printStackTrace();
         }
 
         return positions;
@@ -117,7 +116,7 @@ public class FairySoulStorage {
                     writer.newLine();
                     System.out.println("Created collected file for: " + island);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    return;
                 }
             }
         }

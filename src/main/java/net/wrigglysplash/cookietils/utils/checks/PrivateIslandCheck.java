@@ -1,4 +1,4 @@
-package net.wrigglysplash.cookietils.addons.skyblock.dungeons.utils;
+package net.wrigglysplash.cookietils.utils.checks;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.scoreboard.Score;
@@ -8,15 +8,15 @@ import net.minecraft.scoreboard.Scoreboard;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DungeonUtils {
+public class PrivateIslandCheck {
     private static final Minecraft mc = Minecraft.getMinecraft();
-    private static int dungeonCheckCooldown = 0;
-    private static boolean cachedDungeonStatus = false;
+    private static int privateIslandCheckCooldown = 0;
+    private static boolean cachedPrivateIslandStatus = false;
 
-    public static boolean isInDungeon() {
-        if (dungeonCheckCooldown > 0) {
-            dungeonCheckCooldown--;
-            return cachedDungeonStatus;
+    public static boolean isInGarden() {
+        if (privateIslandCheckCooldown > 0) {
+            privateIslandCheckCooldown--;
+            return cachedPrivateIslandStatus;
         }
 
         if (mc.theWorld == null || mc.thePlayer == null) return false;
@@ -38,15 +38,15 @@ public class DungeonUtils {
             if (line.isEmpty() || seenLines.contains(line)) continue;
             seenLines.add(line);
 
-            if (line.contains("catacombs") || line.contains("(f")) {
-                cachedDungeonStatus = true;
-                dungeonCheckCooldown = 20;
+            if (line.contains("your island")) {
+                cachedPrivateIslandStatus = true;
+                privateIslandCheckCooldown = 20;
                 return true;
             }
         }
 
-        cachedDungeonStatus = false;
-        dungeonCheckCooldown = 20;
+        cachedPrivateIslandStatus = false;
+        privateIslandCheckCooldown = 20;
         return false;
     }
 }

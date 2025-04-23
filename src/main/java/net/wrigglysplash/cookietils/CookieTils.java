@@ -7,14 +7,9 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.MapOverlayRenderer;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.mobs.finders.StarMobFinder;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.BatFinder;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.ChestFinder;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.finders.LeverFinder;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.secrets.rooms.SpawnCornerScanner;
 import net.wrigglysplash.cookietils.addons.skyblock.fairysouls.FairySoulFinder;
 import net.wrigglysplash.cookietils.addons.skyblock.fairysouls.utils.StartupFileChecker;
+import net.wrigglysplash.cookietils.addons.skyblock.farming.garden.PestFinder;
 import net.wrigglysplash.cookietils.utils.ScoreboardChecker;
 import net.wrigglysplash.cookietils.utils.commands.CommandCookieTils;
 import net.wrigglysplash.cookietils.utils.gui.GuiCloseHandler;
@@ -24,7 +19,7 @@ import java.io.File;
 @Mod(modid = CookieTils.MODID, version = CookieTils.VERSION, guiFactory = "net.wrigglysplash.cookietils.utils.gui.GuiFactory")
 public class CookieTils
 {
-    public static final String MODID = "assets/cookietils";
+    public static final String MODID = "cookietils";
     public static final String VERSION = "1.0";
 
     public static Configuration config;
@@ -76,16 +71,17 @@ public class CookieTils
     public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new GuiCloseHandler());
-        MinecraftForge.EVENT_BUS.register(new MapOverlayRenderer());
-        MinecraftForge.EVENT_BUS.register(new SpawnCornerScanner());
+        //MinecraftForge.EVENT_BUS.register(new MapOverlayRenderer());
+        //MinecraftForge.EVENT_BUS.register(new SpawnCornerScanner());
 
-        MinecraftForge.EVENT_BUS.register(new StarMobFinder());
+        //MinecraftForge.EVENT_BUS.register(new StarMobFinder());
 
-        MinecraftForge.EVENT_BUS.register(new ChestFinder());
-        MinecraftForge.EVENT_BUS.register(new LeverFinder());
-        MinecraftForge.EVENT_BUS.register(new BatFinder());
+        //MinecraftForge.EVENT_BUS.register(new ChestFinder());
+        //MinecraftForge.EVENT_BUS.register(new LeverFinder());
+        //MinecraftForge.EVENT_BUS.register(new BatFinder());
 
         MinecraftForge.EVENT_BUS.register(new FairySoulFinder());
+        MinecraftForge.EVENT_BUS.register(new PestFinder());
         MinecraftForge.EVENT_BUS.register(new StartupFileChecker());
         MinecraftForge.EVENT_BUS.register(ScoreboardChecker.class);
         System.out.println("CookieTils loaded!");

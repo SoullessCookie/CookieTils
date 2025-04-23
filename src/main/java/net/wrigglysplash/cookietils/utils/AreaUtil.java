@@ -1,11 +1,11 @@
-package net.wrigglysplash.cookietils.addons.skyblock.fairysouls.utils;
+package net.wrigglysplash.cookietils.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 
 import java.util.Collection;
 
-public class FairyAreaUtils {
+public class AreaUtil {
 
     public static String getCurrentArea() {
         Minecraft mc = Minecraft.getMinecraft();

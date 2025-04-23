@@ -8,8 +8,8 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.wrigglysplash.cookietils.CookieTils;
-import net.wrigglysplash.cookietils.addons.skyblock.dungeons.utils.DungeonUtils;
-import net.wrigglysplash.cookietils.addons.skyblock.fairysouls.utils.FairyAreaUtils;
+import net.wrigglysplash.cookietils.utils.checks.DungeonCheck;
+import net.wrigglysplash.cookietils.utils.AreaUtil;
 import net.wrigglysplash.cookietils.addons.skyblock.fairysouls.utils.FairyProfileUtils;
 
 import java.util.ArrayList;
@@ -24,14 +24,14 @@ public class FairySoulFinder {
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null) return;
-        if (DungeonUtils.isInDungeon()) return;
+        if (DungeonCheck.isInDungeon()) return;
         if (!FairyProfileUtils.isInSkyBlock()) return;
         if (!CookieTils.soulEnabled) return;
 
         tickCount++;
         if (tickCount % 20 != 0) return;
 
-        String area = FairyAreaUtils.getCurrentArea();
+        String area = AreaUtil.getCurrentArea();
         if (!area.equalsIgnoreCase(lastArea)) {
             soulPositions = FairySoulStorage.loadFairySoulPositions();
             lastArea = area;
@@ -42,7 +42,7 @@ public class FairySoulFinder {
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         if (mc.theWorld == null || mc.thePlayer == null) return;
-        if (DungeonUtils.isInDungeon()) return;
+        if (DungeonCheck.isInDungeon()) return;
         if (!FairyProfileUtils.isInSkyBlock()) return;
         if (!CookieTils.soulEnabled) return;
 
